@@ -1,5 +1,5 @@
 class Config {
-  public static get wkfb(): string {
+  private static get wkfb(): string {
     const code: string =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     return `----WebKitFormBoundary${new Array(16)
@@ -10,15 +10,19 @@ class Config {
       .join('')}`;
   }
 
-  public static getRandomNumber(min: number, max: number): number {
+  private static getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   public static parseCookie(cookie: string, key: string): string {
     for (let item of cookie.split(';')) {
-      const value: Array<string> = item.split('=');
-      if ((value.at(0) as string).replaceAll(' ', '') === key) {
-        return value.at(1) as string;
+      const data: Array<string> = item.split('=');
+      const [cookieKey, cookieValue]: [string, string] = [
+        (data.at(0) as string).replaceAll(' ', ''),
+        data.at(1) as string
+      ];
+      if (cookieKey === key) {
+        return cookieValue;
       }
     }
     return key;

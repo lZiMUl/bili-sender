@@ -13,14 +13,20 @@
 
 ### Usage
 ```ts
-  import BiliSender from 'bili-sender';
-      
-  const biliSender: BiliSender = new BiliSender(9329583, {
+  import BiliSender, { IConfig, IResponse } from 'bili-sender';
+
+  const options: IConfig = {
     Cookie: 'xxxxxxxxxxxxxxxxxxxxxxx'
-  });
-  biliSender.addListener(({ code, message }) => {
+  };
+  
+  const biliSender: BiliSender = new BiliSender(9329583, options);
+  
+  biliSender.addListener(({ code, message }: IResponse): void => {
     console.info(code, message)
   });
   
-  biliSender.send('Hello BiliBili');
+  biliSender.send('Hello BiliBili').then((status: boolean): void => {
+    if (status) console.info('done!!')
+    else console.warn('sent error')
+  });
 ```

@@ -1,6 +1,6 @@
 import { IEncodeDataBody } from '../interface/IEncodeDataBody';
 
-export default function EncodeDataBody({
+function EncodeDataBody({
   wkfb,
   roomId,
   message,
@@ -82,3 +82,5 @@ Content-Disposition: form-data; name="csrf_token"
 ${csrf_token}
 --${wkfb}--`;
 }
+
+export default EncodeDataBody;

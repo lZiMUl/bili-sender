@@ -1,6 +1,6 @@
 declare class Config {
-    static get wkfb(): string;
-    static getRandomNumber(min: number, max: number): number;
+    private static get wkfb();
+    private static getRandomNumber;
     static parseCookie(cookie: string, key: string): string;
     static generateHeaders(cookie: string): Headers;
 }

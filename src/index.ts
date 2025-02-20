@@ -1,9 +1,9 @@
 import { error } from 'node:console';
-import EventEmitter from 'node:events';
+import { EventEmitter } from 'node:events';
 import { AxiosInstance, AxiosResponse, create } from 'axios';
 
 import EncodeDataBody from './helper/EncodeDataBody';
-import { IConfig, Response } from './interface/IGlobal';
+import { IConfig, IResponse } from './interface/IGlobal';
 import Config from './unit/config';
 
 class BiliSender extends EventEmitter {
@@ -27,7 +27,7 @@ class BiliSender extends EventEmitter {
   }
 
   // @ts-ignore
-  public addListener(callback: (response: Response) => void): this {
+  public addListener(callback: (response: IResponse) => void): this {
     return super.addListener('callback', callback);
   }
 
@@ -62,4 +62,4 @@ class BiliSender extends EventEmitter {
 }
 
 export default BiliSender;
-export type { IConfig, Response };
+export type { IConfig, IResponse };

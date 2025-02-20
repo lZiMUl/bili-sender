@@ -1,9 +1,9 @@
 interface IConfig {
     Cookie: string;
 }
-interface Response {
+interface IResponse {
     code: number;
     message: string;
 }
-export type { IConfig, Response };
+export type { IConfig, IResponse };
 //# sourceMappingURL=IGlobal.d.ts.map
