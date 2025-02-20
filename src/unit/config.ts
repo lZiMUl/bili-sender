@@ -10,10 +10,6 @@ class Config {
       .join('')}`;
   }
 
-  private static getRandomNumber(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
   public static parseCookie(cookie: string, key: string): string {
     for (let item of cookie.split(';')) {
       const data: Array<string> = item.split('=');
@@ -39,6 +35,10 @@ class Config {
     headers.set('Content-Type', `multipart/form-data; boundary=${Config.wkfb}`);
     headers.set('Cookie', cookie);
     return headers;
+  }
+
+  private static getRandomNumber(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 }
 
