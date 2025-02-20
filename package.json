@@ -1,7 +1,7 @@
 {
   "name": "bili-sender",
   "description": "It is used to automatically send barrages to the Bilibili live broadcast room",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "lZiMUl",
     "email": "lZiMUl@lzimul.com",
