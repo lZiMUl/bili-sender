@@ -8,6 +8,7 @@ declare class BiliSender extends EventEmitter {
     constructor(roomID: number, config: IConfig);
     addListener(callback: (response: IResponse) => void): this;
     send(message: string): Promise<boolean>;
+    static createTable(roomID: Array<number>, config: IConfig): Array<BiliSender>;
 }
 export default BiliSender;
 export type { IConfig, IResponse };

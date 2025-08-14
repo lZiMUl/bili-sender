@@ -1,6 +1,11 @@
 import { error } from 'node:console';
 import { EventEmitter } from 'node:events';
-import { AxiosInstance, AxiosResponse, create } from 'axios';
+import {
+  AxiosRequestHeaders,
+  AxiosInstance,
+  AxiosResponse,
+  create
+} from 'axios';
 
 import EncodeDataBody from './helper/EncodeDataBody';
 import { IConfig, IResponse } from './interface/IGlobal';
@@ -34,10 +39,10 @@ class BiliSender extends EventEmitter {
   public async send(message: string): Promise<boolean> {
     try {
       const {
-        data: { code, message: responseMessage } // @ts-ignore
+        data: { code, message: responseMessage }
       }: AxiosResponse = await BiliSender.CLIENT({
         url: '/msg/send',
-        headers: this.headers,
+        headers: this.headers as unknown as AxiosRequestHeaders,
         data: EncodeDataBody({
           wkfb: this.headers
             .get('Content-Type')
@@ -58,6 +63,15 @@ class BiliSender extends EventEmitter {
       error(new Error(err));
       return false;
     }
+  }
+
+  public static createTable(
+    roomID: Array<number>,
+    config: IConfig
+  ): Array<BiliSender> {
+    return roomID.map(
+      (room: number): BiliSender => new BiliSender(room, config)
+    );
   }
 }
 
