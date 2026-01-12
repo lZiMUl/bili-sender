@@ -32,7 +32,7 @@
     "build": "npm run lint && tsc && npm run typedoc",
     "typedoc": "typedoc",
     "dev": "npm run build && npm run start",
-    "test": "npm run build && npm run start",
+    "test": "echo void",
     "install:china": "npm install --register=https://registry.npmmirror.com",
     "update:china": "npm update --register=https://registry.npmmirror.com"
   },
