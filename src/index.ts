@@ -1,8 +1,8 @@
 import { error } from 'node:console';
 import { EventEmitter } from 'node:events';
 import {
-  AxiosRequestHeaders,
   AxiosInstance,
+  AxiosRequestHeaders,
   AxiosResponse,
   create
 } from 'axios';
@@ -28,6 +28,15 @@ class BiliSender extends EventEmitter {
     this.csrf = Config.parseCookie(
       this.headers.get('Cookie') as string,
       'bili_jct'
+    );
+  }
+
+  public static createTable(
+    roomID: Array<number>,
+    config: IConfig
+  ): Array<BiliSender> {
+    return roomID.map(
+      (room: number): BiliSender => new BiliSender(room, config)
     );
   }
 
@@ -63,15 +72,6 @@ class BiliSender extends EventEmitter {
       error(new Error(err));
       return false;
     }
-  }
-
-  public static createTable(
-    roomID: Array<number>,
-    config: IConfig
-  ): Array<BiliSender> {
-    return roomID.map(
-      (room: number): BiliSender => new BiliSender(room, config)
-    );
   }
 }
 
