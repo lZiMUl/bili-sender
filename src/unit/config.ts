@@ -2,12 +2,9 @@ class Config {
   private static get wkfb(): string {
     const code: string =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    return `----WebKitFormBoundary${new Array(16)
-      .fill('')
-      .map(
-        (): string => code.at(this.getRandomNumber(0, code.length)) as string
-      )
-      .join('')}`;
+    return `----WebKitFormBoundary${Array.from({ length: 16 }, (): string => {
+      return code.at(this.getRandomNumber(0, code.length)) as string;
+    }).join('')}`;
   }
 
   public static parseCookie(cookie: string, key: string): string {
