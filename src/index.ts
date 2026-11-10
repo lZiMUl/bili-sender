@@ -40,7 +40,8 @@ class BiliSender extends EventEmitter {
     );
   }
 
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   public addListener(callback: (response: IResponse) => void): this {
     return super.addListener('callback', callback);
   }
@@ -68,8 +69,10 @@ class BiliSender extends EventEmitter {
         message: responseMessage
       });
       return true;
-    } catch (err: any) {
-      error(new Error(err));
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        error(new Error(err.message));
+      }
       return false;
     }
   }
