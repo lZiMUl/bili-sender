@@ -6,7 +6,7 @@
     "diagnostics": true,
     "target": "ESNext",
     "lib": ["ESNext", "DOM"],
-    "types": ["Node"],
+    "types": ["node"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "NodeNext",
