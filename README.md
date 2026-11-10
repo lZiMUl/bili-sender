@@ -4,7 +4,8 @@
 
 ---
 
-# Install
+## Install
+
 ```bash
   npm i --save bili-sender
 ```
